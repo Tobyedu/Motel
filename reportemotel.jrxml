@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reportemotel" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="05f68ce4-2b4c-481f-80ea-1e1c53e96d48">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT
+  habitacion.descripcion_habitacion,
+  count(servicios.serv_tvsatelital) as tvsatelital,
+  count(servicios.serv_internet) as internet,
+  count(servicios.serv_preservativos) as Preservativos,
+  count(servicios.serv_juguetes_sex) as Juguetes_sexuales,
+  count(servicios.serv_lencerias) as Lencerias
+
+FROM
+  public.cliente,
+  public.cliente_reservaciones,
+  public.empledo,
+  public.metodo_pago,
+  public.reservaciones,
+  public.servicios,
+  public.habitacion
+WHERE
+  cliente.idcliente = cliente_reservaciones.idcliente AND
+  reservaciones.idreservaciones = cliente_reservaciones.idreservaciones AND
+  reservaciones.id_empleado = empledo.id_empleado AND
+  reservaciones.idreservaciones = metodo_pago.idreservaciones AND
+  habitacion.idhabitacion = servicios.idhabitacion AND
+  habitacion.idreservaciones = reservaciones.idreservaciones
+
+
+
+  GROUP BY (habitacion.descripcion_habitacion);]]>
+	</queryString>
+	<field name="descripcion_habitacion" class="java.lang.String"/>
+	<field name="tvsatelital" class="java.lang.Long"/>
+	<field name="internet" class="java.lang.Long"/>
+	<field name="preservativos" class="java.lang.Long"/>
+	<field name="juguetes_sexuales" class="java.lang.Long"/>
+	<field name="lencerias" class="java.lang.Long"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="131" splitType="Stretch">
+			<image>
+				<reportElement x="425" y="11" width="111" height="35" uuid="b80e6898-3e91-4ea5-a6d9-e551d6d28951"/>
+				<imageExpression><![CDATA["C:\\Users\\emele\\Downloads\\WhatsApp Image 2021-03-12 at 15.58.58.jpeg"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="0" y="0" width="143" height="46" uuid="87c2891c-9851-4f8f-a2bf-54c44fc1996d"/>
+				<imageExpression><![CDATA["C:\\Users\\emele\\Downloads\\WhatsApp Image 2021-03-12 at 15.58.58 (1).jpeg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="170" y="11" width="228" height="35" uuid="ab2d7e65-fc43-4bbe-a2dc-5f26cde2e2b7"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[¿Cuáles son los servicios más utilizados por los tipos de habitación?
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="65" width="223" height="23" uuid="cd4d9fa1-9c98-4bfa-b016-852b7a83fdc3"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[NOMBRE: Victor Eduardo Lopez Parrales ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="88" width="210" height="21" uuid="9bb4a1d0-f333-422d-9b70-76e9ed2f1982"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[DOCENTE: Robert Moreira]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="276" y="65" width="279" height="23" uuid="e12f76f8-61f0-4d66-bb9d-cf0374eaed6e"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[NOMBRE DE DISCURSO: MOTEL ("DELICIAS DE TOBY")]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="455" y="88" width="100" height="20" uuid="a33e5a69-e95c-4a49-9b3b-2be8a03df67d"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[CURSO: 5TO "A"]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="37" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="83" height="20" uuid="727d6246-2097-42e0-80dc-947879d3bdb2"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tipo_Habitacion]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="216" y="2" width="89" height="20" uuid="fb1ba40c-089d-4539-bcdc-14344aa1a9ba"/>
+				<textElement>
+					<font isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[tvsatelital]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="317" y="2" width="100" height="20" uuid="a52ee5b2-c67b-4e16-aa22-6f385a3cc795"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Internet]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="495" y="2" width="73" height="20" uuid="0ca3d26c-c736-4714-9885-eaf214e99ff5"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Preservativos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="106" y="2" width="64" height="20" uuid="81f1933b-b0dd-4982-b579-e3daad0b4fc9"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[lencerias]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="417" y="2" width="73" height="20" uuid="d8eec5d5-64e0-47ac-b054-9ad09af3a054"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Jug_sexuales]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="53" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="3" width="100" height="20" uuid="29b0be92-f7f1-494f-9d5f-be30ba2aecea"/>
+				<textFieldExpression><![CDATA[$F{descripcion_habitacion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="216" y="3" width="100" height="20" uuid="a59ecfff-eccf-4174-8454-d766bf005fba"/>
+				<textFieldExpression><![CDATA[$F{tvsatelital}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="325" y="3" width="100" height="20" uuid="719050e3-f446-4b25-86d3-0d22e153c05f"/>
+				<textFieldExpression><![CDATA[$F{internet}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="425" y="3" width="100" height="20" uuid="493003ce-c35f-43d8-97e0-ad1cde05a8e5"/>
+				<textFieldExpression><![CDATA[$F{preservativos}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="525" y="3" width="100" height="20" uuid="220e4d6b-be37-4451-9e08-c2c006d21aa9"/>
+				<textFieldExpression><![CDATA[$F{juguetes_sexuales}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="106" y="3" width="100" height="20" uuid="9ca5421f-e28c-458f-b6de-3eff91b784a5"/>
+				<textFieldExpression><![CDATA[$F{lencerias}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="342" splitType="Stretch">
+			<image>
+				<reportElement x="106" y="0" width="330" height="266" uuid="671395a7-e68f-4afe-ae7c-cadb9b0a2d4f"/>
+				<imageExpression><![CDATA["C:\\Users\\emele\\Downloads\\CALCULOS.png"]]></imageExpression>
+			</image>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
